@@ -1,0 +1,94 @@
+interface Users {
+    id : number,
+    first_name : string,
+    last_name : string,
+    email : string,
+    gender : string,
+    ip_address : string
+}
+
+const UserData : Users[] = [
+    {
+        "id": 1,
+        "first_name": "Thibaud",
+        "last_name": "Gerrett",
+        "email": "tgerrett0@sciencedirect.com",
+        "gender": "Male",
+        "ip_address": "50.154.81.201"
+    },
+    {
+        "id": 2,
+        "first_name": "Cindie",
+        "last_name": "Slimings",
+        "email": "cslimings1@columbia.edu",
+        "gender": "Female",
+        "ip_address": "81.74.87.79"
+    },
+    {
+        "id": 3,
+        "first_name": "Mitchell",
+        "last_name": "Sushams",
+        "email": "msushams2@cdc.gov",
+        "gender": "Male",
+        "ip_address": "199.160.195.116"
+    },
+    {
+        "id": 4,
+        "first_name": "Verine",
+        "last_name": "Richie",
+        "email": "vrichie3@nasa.gov",
+        "gender": "Female",
+        "ip_address": "172.21.2.100"
+    },
+    {
+        "id": 5,
+        "first_name": "Zelma",
+        "last_name": "O'Kelly",
+        "email": "zokelly4@chicagotribune.com",
+        "gender": "Female",
+        "ip_address": "118.150.201.240"
+    },
+    {
+        "id": 6,
+        "first_name": "Shelby",
+        "last_name": "Bunton",
+        "email": "sbunton5@vistaprint.com",
+        "gender": "Female",
+        "ip_address": "98.238.133.210"
+    },
+    {
+        "id": 7,
+        "first_name": "Cord",
+        "last_name": "Antonognoli",
+        "email": "cantonognoli6@ifeng.com",
+        "gender": "Male",
+        "ip_address": "228.53.174.184"
+    },
+    {
+        "id": 8,
+        "first_name": "Carl",
+        "last_name": "Curley",
+        "email": "ccurley7@addthis.com",
+        "gender": "Male",
+        "ip_address": "101.188.27.168"
+    },
+    {
+        "id": 9,
+        "first_name": "Ferdie",
+        "last_name": "Binner",
+        "email": "fbinner8@behance.net",
+        "gender": "Agender",
+        "ip_address": "74.59.219.218"
+    },
+    {
+        "id": 10,
+        "first_name": "Ailey",
+        "last_name": "Hadgkiss",
+        "email": "ahadgkiss9@nature.com",
+        "gender": "Female",
+        "ip_address": "11.189.89.204"
+    }
+]
+
+export default UserData
+export {Users}
