@@ -1,28 +1,18 @@
-import express from 'express'
-import UserData from './Model/users'
-import UserRouter from './controllers/student'
+import express from "express";
+import UserRouter from "./controllers/student";
 
-const app = express()
+const app = express();
 
-const PORT = 3000
+const PORT = 3000;
 
-app.use('/student', UserRouter)
+app.use("/students", UserRouter);
 
-
-app.get('/', (req, res) => {
-    res.json({
-        "message" : "hello Man"
-    })
-})
-
-
-app.get('/about', (req, res) => {
-    res.json({
-        "content" : "This is the ABout Page"
-    })
-})
-
+app.get("/", (req, res) => {
+  res.json({
+    message: "hello Man",
+  });
+});
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log("Server is running on port ", PORT)
-})
+  console.log("Server is running on port ", PORT);
+});
