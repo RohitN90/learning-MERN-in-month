@@ -23,7 +23,7 @@ UserRouter.get("/:studentid", (req, res) => {
 });
 
 // To add student in to the local variable
-UserRouter.post("/addStudent", (req, res) => {
+UserRouter.post("/addStudents", (req, res) => {
   const data: Users = {
     email: req.body.email,
     first_name: req.body.firstName,
@@ -42,7 +42,7 @@ UserRouter.post("/addStudent", (req, res) => {
 });
 
 //To udated a Student by studentId
-UserRouter.put("/updateStudent/:studentid", (req, res) => {
+UserRouter.put("/updateStudents/:studentid", (req, res) => {
   const id: string = req.params.studentid;
   const data: Users | undefined = UserData.find((data) => {
     if (data.id.toString() == req.params.studentid) {
@@ -68,7 +68,7 @@ UserRouter.put("/updateStudent/:studentid", (req, res) => {
 });
 
 // To delete a student by studentId
-UserRouter.delete("/deleteStudent/:studentid", (req, res) => {
+UserRouter.delete("/deleteStudents/:studentid", (req, res) => {
   const id: number = parseInt(req.params.studentid);
   UserData.splice(id, 1);
   res.json({
