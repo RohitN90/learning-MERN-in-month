@@ -1,8 +1,10 @@
 import express from "express";
 import UserRouter from "./controllers/student";
+import connect from "./db/connection";
 
 const PORT = 3030;
 const app = express();
+connect();
 
 // Middleware
 app.use(express.json());

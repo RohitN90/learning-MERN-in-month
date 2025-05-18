@@ -1,81 +1,79 @@
 import { Router } from "express";
-import UserData from "../Model/users";
-import { Users } from "../Model/users";
+import StudentModel from "../db/userModel";
+import { StudentSchema } from "../db/userModel";
 
 const UserRouter = Router();
 
 // To get all the students int the local variable
-UserRouter.get("/allStudents", (req, res) => {
-  res.json(UserData);
+UserRouter.get("/allStudents", async (req, res) => {
+  try {
+    const data: StudentSchema[] = await StudentModel.find({});
+    res
+      .json({
+        data: data,
+        message: "All students data",
+        status: "success",
+      })
+      .status(200);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal server error",
+      data: [],
+    });
+  }
 });
 
 // To get the specific student by giving ID
-UserRouter.get("/:studentid", (req, res) => {
+UserRouter.get("/:studentid", async (req, res) => {
   const studentId: string = req.params.studentid;
-  const result: Users | undefined = UserData.find((data) => {
-    if (data.id.toString() == studentId) {
-      return UserData[data.id];
-    } else {
-      return null;
-    }
-  });
-  res.json(result);
+  try {
+    const data: StudentSchema | null = await StudentModel.findById(studentId);
+    res
+      .json({
+        data: data,
+        message: "Student data",
+        status: "success",
+      })
+      .status(200);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
 });
 
 // To add student in to the local variable
-UserRouter.post("/addStudents", (req, res) => {
-  const data: Users = {
+UserRouter.post("/addStudents", async (req, res) => {
+  const data: StudentSchema = {
     email: req.body.email,
-    first_name: req.body.firstName,
+    first_name: req.body.first_name,
     gender: req.body.gender,
-    id: req.body.id,
     ip_address: req.body.ip_address,
     last_name: req.body.last_name,
   };
-
-  UserData.push(data);
-  res.json({
-    status: "success",
-    message: "Student added successfully",
-    data: data,
-  });
+  try {
+    const result = await StudentModel.create(data);
+    res
+      .json({
+        status: "success",
+        message: "Student added successfully",
+        data: result,
+      })
+      .status(201);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
 });
 
 //To udated a Student by studentId
-UserRouter.put("/updateStudents/:studentid", (req, res) => {
-  const id: string = req.params.studentid;
-  const data: Users | undefined = UserData.find((data) => {
-    if (data.id.toString() == req.params.studentid) {
-      return data;
-    }
-  });
-
-  const updateData: Users = {
-    email: req.body.email,
-    first_name: req.body.firstName,
-    gender: req.body.gender,
-    ip_address: req.body.ip_address,
-    last_name: req.body.last_name,
-    id: parseInt(id),
-  };
-
-  UserData[parseInt(id)] = updateData;
-  res.json({
-    success: true,
-    messafge: "Student updated successfully",
-    data: updateData,
-  });
-});
+UserRouter.put("/updateStudents/:studentid", (req, res) => {});
 
 // To delete a student by studentId
-UserRouter.delete("/deleteStudents/:studentid", (req, res) => {
-  const id: number = parseInt(req.params.studentid);
-  UserData.splice(id, 1);
-  res.json({
-    success: true,
-    message: "Student deleted successfully",
-    data: UserData,
-  });
-});
+UserRouter.delete("/deleteStudents/:studentid", (req, res) => {});
 
 export default UserRouter;
